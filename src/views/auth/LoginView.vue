@@ -50,11 +50,13 @@ export default {
   },
   methods: {
     login() {
-      httpClient.post("/login", this.credentials).then((response) => {
-        storage.set("token", response.data.data.token);
+      httpClient.get("/sanctum/csrf-cookie").then((response) => {
+        httpClient.post("/api/login", this.credentials).then((response) => {
+          storage.set("token", response.data.data.token);
 
-        //this.$router.push({ name: "admin.products" });
-        location.href = "/admin/products";
+          //this.$router.push({ name: "admin.products" });
+          location.href = "/admin/products";
+        });
       });
     },
   },

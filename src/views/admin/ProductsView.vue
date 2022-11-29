@@ -19,13 +19,13 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     httpClient
-      .get("/products")
+      .get("/api/products")
       .then((response) => next((vm) => (vm.products = response.data)));
   },
   methods: {
     //To-DO: mover para o template base do admin...
     logout() {
-      httpClient.post("/logout").then((response) => {
+      httpClient.post("/api/logout").then((response) => {
         storage.remove("token");
         location.href = "/auth/login";
       });

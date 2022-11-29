@@ -4,10 +4,11 @@ import storage from "./Storage.js";
 let token = storage.get("token");
 
 const httpClient = axios.create({
-  baseURL: "http://localhost/api",
+  baseURL: "http://localhost",
+  withCredentials: true,
 });
 
-httpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+//httpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
 //To-do: axios interceptors
 
@@ -17,8 +18,5 @@ export default {
   },
   post(endpoint, data) {
     return httpClient.post(endpoint, data);
-  },
-  removeAuthorization() {
-    delete httpClient.defaults.headers.common["Authorization"];
   },
 };
