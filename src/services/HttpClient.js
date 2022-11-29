@@ -18,7 +18,4 @@ export default {
   post(endpoint, data) {
     return httpClient.post(endpoint, data);
   },
-  removeAuthorization() {
-    delete httpClient.defaults.headers.common["Authorization"];
-  },
 };
