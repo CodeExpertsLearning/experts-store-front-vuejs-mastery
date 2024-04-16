@@ -1,8 +1,11 @@
 <template>
-  <div class="w-full h-full">
-    <div class="max-w-3xl rounded border border-gray-300 p-4">
+  <div class="w-full h-full absolute flex items-center justify-center">
+    <div class="max-w-3xl rounded border border-gray-300 p-4 shadow">
+      <div class="w-96 text-center">
+        <h2 class="text-xl font-bold mb-6">Acessar Painel Loja</h2>
+      </div>
       <form action="">
-        <div class="w-full mb-6">
+        <div class="w-96 mb-6">
           <label for="email" class="block mb-2">E-mail</label>
           <input
             type="email"
@@ -13,7 +16,7 @@
           />
         </div>
 
-        <div class="w-full mb-6">
+        <div class="w-96 mb-6">
           <label for="password" class="block mb-2">Senha</label>
           <input
             type="password"
@@ -26,7 +29,7 @@
 
         <button
           class="px-4 py-2 rounded border border-green-900 bg-green-600 hover:bg-green-900 text-white font-bold transition duration-300 ease-in-out"
-          v-on:click.prevent="login"
+          v-on:click.prevent="authStore.login(credentials)"
         >
           Acessar
         </button>
@@ -36,8 +39,8 @@
 </template>
 
 <script>
-import httpClient from "@/services/HttpClient.js";
-import storage from "@/services/Storage.js";
+import { mapStores } from "pinia";
+import { useAuth } from "@/stores/auth";
 
 export default {
   data() {
@@ -48,15 +51,8 @@ export default {
       },
     };
   },
-  methods: {
-    login() {
-      httpClient.post("/login", this.credentials).then((response) => {
-        storage.set("token", response.data.data.token);
-
-        //this.$router.push({ name: "admin.products" });
-        location.href = "/admin/products";
-      });
-    },
+  computed: {
+    ...mapStores(useAuth),
   },
 };
 </script>

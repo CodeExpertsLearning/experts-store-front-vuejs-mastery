@@ -4,19 +4,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto">
-    <header>
-      <div class="w-full mb-6">
-        <nav class="flex">
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/auth/login">Login</RouterLink>
-        </nav>
-      </div>
-    </header>
-
-    <RouterView />
-  </div>
+  <RouterView />
 </template>
 
 <style scoped>
