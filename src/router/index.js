@@ -7,6 +7,7 @@ import ProductsView from "../views/admin/products/ProductsView.vue";
 import ProductsCreateView from "../views/admin/products/ProductsCreateView.vue";
 import ProductsEditView from "../views/admin/products/ProductsEditView.vue";
 import UploadView from "../views/admin/products/photos/UploadView.vue";
+import PhotosView from "../views/admin/products/photos/PhotosView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +46,12 @@ const router = createRouter({
           path: "products/:id/photos/upload",
           name: "admin.products.photos.upload",
           component: UploadView,
+          props: true,
+        },
+        {
+          path: "products/:id/photos",
+          name: "admin.products.photos",
+          component: PhotosView,
           props: true,
         },
       ],
